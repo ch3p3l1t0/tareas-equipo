@@ -1,20 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './components/Login'; // Ruta del componente Login
-import App from './App'; // Si tienes un componente principal
-import './index.css'; // Estilos globales (opcional)
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './styles/global.css';
+import App from './App.jsx';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Router>
-      <Routes>
-        {/* Ruta para la página principal */}
-        <Route path="/" element={<App />} />
-
-        {/* Ruta para la página de inicio de sesión */}
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Router>
-  </React.StrictMode>
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
 );
