@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import axios from 'axios';
@@ -7,13 +7,15 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate(); // Hook para redireccionar
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/login', { email, password });
+      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
       setMessage(response.data.message);
       localStorage.setItem('token', response.data.token); // Guardar el token en el almacenamiento local
+      navigate('/dashboard'); // Redirigir a la página de perfil
     } catch (error) {
       setMessage(error.response.data.error);
     }
